@@ -36,7 +36,7 @@ Aktuelle Version : __***0.0.0.2***__
 1. [librosa](https://github.com/librosa/librosa) == 0.5.0
 1. [scikits.audiolab](https://pypi.python.org/pypi/scikits.audiolab)==0.11.0
 
-If you have problems with the librosa library, try to install ffmpeg by the following command. ( Ubuntu 14.04 )  
+Wenn Sie Probleme mit der librosa-Bibliothek haben, versuchen Sie, ffmpeg mit dem folgenden Befehl zu installieren. ( Ubuntu 14.04 )  
 <pre><code>
 sudo add-apt-repository ppa:mc3man/trusty-media
 sudo apt-get update
@@ -46,34 +46,33 @@ sudo apt-get -y install ffmpeg
 
 ## Dataset
 
-Use [VCTK](http://homepages.inf.ed.ac.uk/jyamagis/page3/page58/page58.html), 
-[LibriSpeech](http://www.openslr.org/12/) and [TEDLIUM release 2](http://www-lium.univ-lemans.fr/en/content/ted-lium-corpus) corpus.
-Total number of sentences in the training set composed of the above three corpus is 240,612. 
-Valid and test set is built using only LibriSpeech and TEDLIUM corpuse, because VCTK corpus does not have valid and test set. 
-After downloading the each corpus, extract them in the 'asset/data/VCTK-Corpus', 'asset/data/LibriSpeech' and 
- 'asset/data/TEDLIUM_release2' directories. 
+Verwenden Sie [VCTK](http://homepages.inf.ed.ac.uk/jyamagis/page3/page58/page58.html), 
+[LibriSpeech](http://www.openslr.org/12/) und [TEDLIUM release 2](http://www-lium.univ-lemans.fr/en/content/ted-lium-corpus) Korpus.
+Die Gesamtzahl der Sätze in der Trainingsmenge, die aus den drei oben genannten Korpussen besteht, beträgt 240.612. 
+Der Gültigkeits- und Testsatz wird nur aus LibriSpeech- und TEDLIUM-Korpus gebildet, da das VCTK-Korpus keinen Gültigkeits- und Testsatz hat. 
+Nach dem Herunterladen der einzelnen Korpusse extrahieren Sie diese in die Ordner 'asset/data/VCTK-Corpus', 'asset/data/LibriSpeech' und 
+ 'asset/data/TEDLIUM_release2' entpackt. 
  
-Audio was augmented by the scheme in the [Tom Ko et al](http://speak.clsp.jhu.edu/uploads/publications/papers/1050_pdf.pdf)'s paper. 
+Audio wurde durch das Schema in der Arbeit von [Tom Ko et al] (http://speak.clsp.jhu.edu/uploads/publications/papers/1050_pdf.pdf) ergänzt. 
 
 
 ## Pre-processing dataset
-
-The TEDLIUM release 2 dataset provides audio data in the SPH format, so we should convert them to some format 
-librosa library can handle. Run the following command in the 'asset/data' directory convert SPH to wave format.  
+Der TEDLIUM-Release-2-Datensatz stellt Audiodaten im SPH-Format bereit, daher sollten wir sie in ein bestimmtes Format konvertieren
+librosa-Bibliothek verarbeiten kann. Führen Sie den folgenden Befehl im Verzeichnis „asset/data“ aus, konvertieren Sie SPH in das Wave-Format.
 <pre><code>
 find -type f -name '*.sph' | awk '{printf "sox -t sph %s -b 16 -t wav %s\n", $0, $0".wav" }' | bash
 </code></pre>
 
-If you don't have installed `sox`, please installed it first.
+Wenn Sie `sox` nicht installiert haben, installieren Sie es bitte zuerst.
 <pre><code>
 sudo apt-get install sox
 </code></pre>
 
-We found the main bottle neck is disk read time when training, so we decide to pre-process the whole audio data into 
-  the MFCC feature files which is much smaller. And we highly recommend using SSD instead of hard drive.  
-  Run the following command in the console to pre-process whole dataset.
+Wir haben festgestellt, dass der Hauptengpass die Lesezeit der Festplatte beim Training ist, also haben wir uns entschieden, die gesamten Audiodaten vorzuverarbeiten
+   die MFCC-Funktionsdateien, die viel kleiner sind. Und wir empfehlen dringend, eine SSD anstelle einer Festplatte zu verwenden.
+   Führen Sie den folgenden Befehl in der Konsole aus, um das gesamte Dataset vorzuverarbeiten.
 <pre><code>
-python preprocess.py
+python-preprocess.py
 </code></pre>
  
 
@@ -168,17 +167,7 @@ und das polyglotte Spracherkennungsmodell wird ein guter Kandidat für zukünfti
 ## Andere Ressourcen
 
 1. [ibabs WaveNet(Sprachsynthese) Tensorflow-Implementierung](https://github.com/ibab/tensorflow-wavenet)
-1. [Fast WaveNet (Sprachsynthese) Tensorflow-Implementierung von Tomlepaine] (https://github.com/ibab/tensorflow-wavenet)
-
-## Namjus andere Repositories
-
-1. [SugarTensor](https://github.com/buriburisuri/sugartensor)
-1. [EBGAN-Tensorflow-Implementierung](https://github.com/buriburisuri/ebgan)
-1. [Timeseries Gan Tensorflow-Implementierung](https://github.com/buriburisuri/timeseries_gan)
-1. [Überwachte InfoGAN-Tensorflow-Implementierung] (https://github.com/buriburisuri/supervised_infogan)
-1. [AC-GAN-Tensorflow-Implementierung](https://github.com/buriburisuri/ac-gan)
-1. [SRGAN-Tensorflow-Implementierung](https://github.com/buriburisuri/SRGAN)
-1. [ByteNet-Fast Neural Machine Translation](https://github.com/buriburisuri/ByteNet)
+2. [Fast WaveNet (Sprachsynthese) Tensorflow-Implementierung von Tomlepaine] (https://github.com/ibab/tensorflow-wavenet)
 
 ## Zitat
 
